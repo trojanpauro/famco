@@ -1,0 +1,148 @@
+initial_screen:
+  type: initial_screen
+  next_screen: welcome
+  default_language: en
+
+welcome:
+  type: menu_screen
+  text: Welcome to Famco
+   
+  options:
+    - text: Register Harvest
+      next_screen: register
+    - text: View Offers
+      next_screen: offers
+    - text: Update Harvest
+      next_screen: update
+  session_key: action
+
+
+offers:
+  type: quit_screen
+  text: Comming Soon
+
+update:
+  type: quit_screen
+  text: Comming Soon
+
+
+
+
+
+register:
+  type: menu_screen
+  text: Crop Name
+  session_key: crop
+  input_identifier: crop
+
+  options:
+    - text: 'Tomatoes'
+      next_screen: tomato_variety
+    - text: 'Cabbages'
+      next_screen: cabbage_variety
+    - text: 'Onions'
+      next_screen: onion_variety
+    - text: 'Potatoes'
+      next_screen: potato_variety
+ 
+tomato_variety:
+  type: menu_screen
+  text: Variety
+  items:
+    text: " {{value}}"
+    value: "{{item}}"
+    next_screen: hectarage
+    session_key: variety
+    with_dict:
+      a: Tengeru
+      b: Alicante
+      c: Monterosa
+
+potato_variety:
+  type: menu_screen
+  text: Variety
+  items:
+    text: " {{value}}"
+    value: "{{item}}"
+    next_screen: hectarage
+    session_key: variety
+    with_dict:
+      a: Princess Laratte
+      b: Kennebec
+      c: Masquerade
+
+
+
+
+cabbage_variety:
+  type: menu_screen
+  text: Variety
+  items:
+    text: " {{value}}"
+    value: "{{item}}"
+    next_screen: hectarage
+    session_key: variety
+    with_dict:
+      a: Savoy 
+      b: January King
+      c: Fabiola
+
+onion_variety:
+  type: menu_screen
+  text: Variety
+  items:
+    text: " {{value}}"
+    value: "{{item}}"
+    next_screen: hectarage
+    session_key: variety
+    with_dict:
+      a: Texas Grano
+      b: Yello Queen
+      c: Ailsa Craig
+
+
+
+hectarage:
+  text: How  many hectares are you harvesting  
+  type: input_screen
+  input_identifier: hectarage_planted
+  next_screen: enter_harvest_date
+
+enter_harvest_date:
+  type: menu_screen
+  text: Expected Harvest Day
+  input_identifier: harvest_date
+  items:
+    text: "{{value}}"
+    value: "{{item}}"
+    next_screen: confirm
+    session_key: harvest_date
+    with_dict:
+      a: Monday
+      b: Tuesday
+      c: Wednesday
+      d: Thursday
+      e: Friday
+      f: Sartuday
+      h: Sunday
+
+
+confirm:
+  text: your harvest  has been registered succesfully
+  type: menu_screen
+  options:
+    - text: 'yes'
+      next_screen: confirmed
+    - text: 'no'
+      next_screen: rejected
+  session_key: confirm_deduction
+
+confirmed:
+  type: quit_screen
+  text: Harvest registered succesfully
+
+rejected:
+  type: quit_screen
+  text: Cancelled
+
+
